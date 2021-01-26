@@ -1,18 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 const CartItem = styled.div`
   display: grid;
-  grid-template-columns: 22% 63% 15%;
+  grid-template-columns: 22% 38% 25% 15%;
+  grid-template-areas:    
+    'image info quantity delete';
   grid-template-rows: repeat(1, 100%);
   width: 100%;
   border-bottom: 2px solid #EDEDED;
 
   @media(max-width: 1000px){
     grid-template-columns: 35% 50% 15%;
+    grid-template-rows: 65% 35%;
+    grid-template-areas:    
+    'image info delete'
+    'image quantity delete';
   }
 `;
 
@@ -21,29 +27,109 @@ const ItemImg = styled.div`
   img{
     text-align: center;
   }
-  grid-column: 1/2;
+  grid-area: image;
 `;
 
 const ItemInfo = styled.div`
-  grid-column: 2/3;
+  grid-area: info;
   padding: 1vh;
+  display: flex;
+  justify-content: center;
+  //align-items: center;
+  flex-direction: column;
   
 
   .name{
     font-size: 1.7rem;
     font-weight: 600;
-    margin-bottom: auto; 
+    margin: 0; 
   }
 
   .price{
     font-size: 1.3rem;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: 0; 
+    //margin-top: auto;
+    //margin-bottom: auto;
   }
+
+  @media(max-width: 1000px){
+    max-height: 100%;
+    .name{
+      
+    }
+  }
+
 `;
 
+const ItemQuantity = styled.div`
+  grid-area: quantity;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: inline-block;
+  position: relative;
+  font-size: 0;
+  overflow: hidden;
+  border-radius: 3px;
+  width: calc(28px*3);
+  height: 28px;
+  button {
+    display: block;
+    width: calc(28px * 1.2);
+    height: 28px;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: ${props => props.theme.buttonColor};;
+    font-size: calc(28px * 0.7);
+    line-height: 1;
+    cursor: pointer;
+    :focus {
+      outline: none;
+    }
+    :hover{
+      filter: brightness(0.7);
+    }
+    :disabled {
+      color: #999;
+      cursor: default;
+    }
+    :first-child {
+      left: 0;
+      bottom: 0;
+    }
+    :last-child {
+      right: 0;
+      top: 0;
+    }
+  }
+  input[type="number"] {
+    position: absolute;
+    top: 0;
+    left: 28px;
+    width: 28px;
+    height: 28px;
+    margin: 0;
+    padding: 0 0;
+    border: 0;
+    font-weight: bold;
+    text-align: center;
+    //-moz-appearance:textfield;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  @media(max-width: 1000px){
+    margin: 1vh;
+  }
+`;  
+
 const ItemDelete = styled.button`
-  grid-column: 3/4;
+  grid-area: delete;
   background-color: transparent; 
   border: none;
   color: ${props => props.theme.buttonColor}; 
@@ -56,7 +142,8 @@ const ItemDelete = styled.button`
   }
 `;
 
-const ItemCarrinho = ({pokemon, removeItem}) => {
+const ItemCarrinho = ({pokemon, removeItem, editQuantity}) => {
+ 
   return (
     <CartItem>
       <ItemImg>
@@ -66,6 +153,11 @@ const ItemCarrinho = ({pokemon, removeItem}) => {
         <p className="name">{pokemon.name}</p>
         <p className="price">R$ {pokemon.price.toFixed(2)}</p>
       </ItemInfo>
+      <ItemQuantity>
+        <button onClick={() => editQuantity(pokemon, pokemon.quantidade-1)} disabled={pokemon.quantidade === 1}><FontAwesomeIcon icon={faMinus} size="xs"/></button>
+        <input type="number" name="thirdQty" value={pokemon.quantidade} readOnly={true}/>
+        <button onClick={() => editQuantity(pokemon, pokemon.quantidade+1)}><FontAwesomeIcon icon={faPlus} size="xs"/></button>
+      </ItemQuantity>
       <ItemDelete onClick={() => removeItem(pokemon)}>
         <FontAwesomeIcon icon={faTimes} size="lg"/>
       </ItemDelete>
@@ -77,6 +169,7 @@ const ItemCarrinho = ({pokemon, removeItem}) => {
 ItemCarrinho.propTypes = {
   pokemon: PropTypes.object.isRequired,
   removeItem: PropTypes.func.isRequired,
+  editQuantity: PropTypes.func.isRequired,
 };
 
 export default ItemCarrinho;

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import ItemCarrinho from './ItemCarrinho'
@@ -161,11 +161,13 @@ const ModalContent = styled.div`
   }
 `;
 
-const Carrinho = ({carrinho, clearCart, removeItem}) => {
+const Carrinho = ({carrinho, clearCart, removeItem, editQuantity}) => {
   const refCart = useRef(null);
   const refCollapse = useRef(null);
   const refModal = useRef(null);
   const refFloatButton = useRef(null);
+
+  const [teste, setTeste] = useState(0);
 
   let toggleCart = () => {
     refCart.current.style.width = refCart.current.style.width === "80%" ? "0px" : "80%";
@@ -198,13 +200,13 @@ const Carrinho = ({carrinho, clearCart, removeItem}) => {
           {carrinho.map((pokemon, index) => {
             if(pokemon.sprite) 
               return (
-                <ItemCarrinho key={index} pokemon={pokemon} removeItem={removeItem}/>
+                <ItemCarrinho key={index} pokemon={pokemon} removeItem={removeItem} editQuantity={editQuantity}/>
               )
           })}
         </CartContent>
         <CartSummary>
           <p className="totalLabel">Total: </p>
-          <p className="totalNumber">R$ {formatNumber(carrinho.reduce((prev, current)=> prev + current.price, 0)).toFixed(2)} </p>
+          <p className="totalNumber">R$ {formatNumber(carrinho.reduce((prev, current)=> prev + current.price * current.quantidade, 0)).toFixed(2)} </p>
         </CartSummary>
         <CartFinish>
           <OutlineButton onClick={() => finishOrder()}>
@@ -232,6 +234,7 @@ Carrinho.propTypes = {
   clearCart: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
   carrinho: PropTypes.array.isRequired,
+  editQuantity: PropTypes.func.isRequired,
 }
 
 export default Carrinho;

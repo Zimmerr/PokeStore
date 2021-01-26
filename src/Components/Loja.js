@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import PokemonLista from './PokemonLista'
@@ -15,24 +15,65 @@ const ContentStyled = styled.div`
   }
 `;
 
-class Loja extends Component {
-  static propTypes = {
-    pokemonType: PropTypes.string.isRequired,
-    addNewItem: PropTypes.func.isRequired,
-    clearCart: PropTypes.func.isRequired,
-    removeItem: PropTypes.func.isRequired,
-    carrinho: PropTypes.array.isRequired,
+const Loja = ({pokemonType}) => {
+  const [cart, setCart] = useState([]);
+
+  const localStorageKey = pokemonType + 'Cart';
+
+  useEffect(() => {
+    const localCart = window.localStorage.getItem(localStorageKey);
+    localCart && setCart(JSON.parse(localCart))
+  }, [])
+
+  const addNewItem = item => {
+    let newCart;
+    let oldCart = cart;
+    let oldItem = oldCart.findIndex(el => el.name === item.name);
+    if (oldItem >= 0){
+      oldCart[oldItem].quantidade++;
+      newCart = [...oldCart];
+    }
+    else{
+      item.quantidade = 1;
+      newCart = [...cart, item];
+    }
+    setCart(newCart)
+    window.localStorage.setItem(localStorageKey, JSON.stringify(newCart))
+    console.log(cart);
   };
 
-  render() {
-    const {addNewItem, clearCart, carrinho, pokemonType, removeItem} = this.props
-    return (
-      <ContentStyled>
-        <PokemonLista pokemonType={pokemonType} addNewItem={addNewItem} />
-        <Carrinho carrinho={carrinho} clearCart={clearCart} removeItem={removeItem}/>
-      </ContentStyled>
-    );
+  const editQuantity = (item, quantidade) => {
+    let oldCart = cart;
+    let itemIndex = oldCart.findIndex(el => el.name === item.name);
+    oldCart[itemIndex].quantidade = quantidade;
+    let newCart = [...oldCart]
+    setCart(newCart)
+    window.localStorage.setItem(localStorageKey, JSON.stringify(newCart))
   }
+
+  const removeItem = item =>{
+    let oldCart = cart;
+    let newCart = oldCart.filter(element => element.name !== item.name)
+    window.localStorage.setItem(localStorageKey, JSON.stringify(newCart))
+    setCart(newCart)
+  }
+
+  const clearCart = () => {
+    window.localStorage.removeItem(localStorageKey)
+    setCart([])
+  }
+  
+  return (
+    <ContentStyled>
+      <PokemonLista pokemonType={pokemonType} addNewItem={addNewItem} />
+      <Carrinho carrinho={cart} clearCart={clearCart} removeItem={removeItem} editQuantity={editQuantity}/>
+    </ContentStyled>
+  );
 }
+
+
+Loja.propTypes = {
+  pokemonType: PropTypes.string.isRequired,
+};
 
 export default Loja;
