@@ -123,8 +123,8 @@ const CartFinish = styled.div`
 const ModalContent = styled.div`
   display: grid;
   grid-template-areas:
-    'header header header'
-    'image main main';
+    'header header'
+    'image main';
   grid-gap: 10px;
   padding: 2vh;
   
@@ -138,10 +138,11 @@ const ModalContent = styled.div`
 
   img {
     grid-area: image;
-    width: 100vw;
-    height: auto;
+    width: 400px;
+    height: 400px;
     padding: 5vh;
     max-width: 100%;
+    max-height: 100%;
   }
   .content {
     grid-area: main; 
@@ -155,7 +156,7 @@ const ModalContent = styled.div`
     'main';
 
     img{
-      width: 41vh;
+      height: auto;
     }
   }
 `;

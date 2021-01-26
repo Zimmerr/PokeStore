@@ -7,7 +7,8 @@ const StyledModal = styled.div`
   top: 0;
   left: 0;
   width:100%;
-  height: 100%;
+  height:100%;
+  
   background: rgba(0, 0, 0, 0.7);
   -webkit-transition: opacity 0.5s ease-out;
   -moz-transition: opacity 0.5s ease-out;
@@ -19,12 +20,11 @@ const StyledModal = styled.div`
 const ModalContent = styled.section`
   position:fixed;
   background: white;
-  width: 80%;
-  height: auto;
+  max-height: 80vh;
+  max-width: 80vw;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
-  
 
   button {
     position: absolute;
