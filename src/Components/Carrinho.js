@@ -187,7 +187,6 @@ const Carrinho = ({carrinho, clearCart, removeItem, editQuantity}) => {
     }
   }
 
-  //if(carrinho && carrinho.map)
   return (
     <>
       <CollapseCart onClick={() => {toggleCart()}} ref={refCollapse}/>

@@ -13,7 +13,6 @@ const PokeCard = styled.div `
   flex-basis: 14.5%;
   -webkit-box-shadow: 0px 0px 5px 0px #EDEDED; 
   box-shadow: 0px 0px 5px 0px #EDEDED;
-  //max-height: 249px;
 
   @media(max-width: 1000px){
     flex-basis: auto;
@@ -22,10 +21,6 @@ const PokeCard = styled.div `
 
 const PokeImg = styled.div`
   text-align: center;
-  img{
-    //width: 100%;
-    //object-fit: cover;
-  }
 `
 
 const PokeInfo = styled.div `

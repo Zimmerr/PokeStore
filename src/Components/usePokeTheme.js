@@ -20,7 +20,6 @@ const usePokeTheme = () => {
 
     useEffect(() => {
         const localTheme = window.localStorage.getItem('theme');
-        console.log(localTheme)
         localTheme && setTheme(themeList[localTheme])
         
         setMountedComponent(true)

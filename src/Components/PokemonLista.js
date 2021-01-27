@@ -116,7 +116,6 @@ const SearchInput = styled.div`
 
   @media(max-width: 1000px){
     font-size: 12px;
-    //height: 7vh;
   }
 `;
 
@@ -137,11 +136,9 @@ class PokemonLista extends Component {
     pokemonList: [],
     searchInput: '',
     error: false,
-    //searchMode: false,
   };
 
   componentDidMount(){
-    console.log(this.isLoading)
     this.loadingOn();
     ApiService.searchByType(this.props.pokemonType)
         .then(res => {
@@ -179,7 +176,6 @@ class PokemonLista extends Component {
     if(limit) {
       nameList = nameList.slice(offset, offset+limit)
       limit = Math.min(limit, nameList.length)
-      console.log(nameList)
     }
     else limit = nameList.length
     this.loadingOn();
@@ -205,7 +201,6 @@ class PokemonLista extends Component {
         this.handleError(err);
       })
     })
-    console.log(this.state.pokemonList)
   }
 
   searchPokemon(){
@@ -213,9 +208,7 @@ class PokemonLista extends Component {
     let limit = filteredList.length === this.state.urlList.length ? paginationValue : filteredList.length;
     let searchMode = this.state.searchInput !== '';
     this.updatePokemonList(filteredList, limit, 0, true)
-    console.log(searchMode)
     this.setState({searchMode})
-    console.log(this.state.searchMode)
   }
 
   onChangeHandler(e){
@@ -242,7 +235,6 @@ class PokemonLista extends Component {
               </button>
             </SearchInput>
             {pokemonList
-              //.filter(pokemon => this.state.searchInput === '' || pokemon.name.includes(this.state.searchInput))
               .map((pokemon, index) => {
                 if(pokemon.sprite) 
                   return (

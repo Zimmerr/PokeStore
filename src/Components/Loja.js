@@ -39,7 +39,6 @@ const Loja = ({pokemonType}) => {
     }
     setCart(newCart)
     window.localStorage.setItem(localStorageKey, JSON.stringify(newCart))
-    console.log(cart);
   };
 
   const editQuantity = (item, quantidade) => {

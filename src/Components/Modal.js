@@ -13,7 +13,6 @@ const StyledModal = styled.div`
   -webkit-transition: opacity 0.5s ease-out;
   -moz-transition: opacity 0.5s ease-out;
   transition: opacity 0.5s ease-out;
-  //pooutter-events: none;
 
 `
 

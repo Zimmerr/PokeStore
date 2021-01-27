@@ -39,7 +39,6 @@ const ItemInfo = styled.div`
   padding: 1vh;
   display: flex;
   justify-content: center;
-  //align-items: center;
   flex-direction: column;
   
 
@@ -52,8 +51,6 @@ const ItemInfo = styled.div`
   .price{
     font-size: 1.3rem;
     margin: 0; 
-    //margin-top: auto;
-    //margin-bottom: auto;
   }
 
   @media(max-width: 1000px){
@@ -120,7 +117,6 @@ const ItemQuantity = styled.div`
     border: 0;
     font-weight: bold;
     text-align: center;
-    //-moz-appearance:textfield;
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
