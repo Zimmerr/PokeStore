@@ -11,12 +11,15 @@ import * as charizardURL from '../assets/charizard.png'
 const PanelWrapper = styled.div`
   height: 93vh;
   width: 100%;
+  :hover > div:not(:hover) {
+    filter: brightness(0.5);
+    transition: all .3s ease-in;
+  }
 `;
 const StorePanel = styled.div`
   cursor: pointer;
   display: inline-block;
   height: 100%;
-  //margin-right: -4px;
   text-align: center;
   vertical-align: top;
   width: 50%;
@@ -26,14 +29,13 @@ const StorePanel = styled.div`
               
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${props => props.imgURL});
 
-
   background-size:     cover;                      
   background-repeat:   no-repeat;
   background-position: center center;  
 
-  div {
-    transition: all .3s ease-in-out;
-    :hover{
+  :hover {
+    div{
+      transition: all .3s ease-in-out;
       transform: scale(1.2);
     }
   }
@@ -50,11 +52,11 @@ const StorePanel = styled.div`
     -webkit-text-stroke: 2px black;
   }
 
+
   @media(max-width:1000px){
     height: 50%;
     width: 100%;
     
-
     img {
       height: 20vh;
       width: 20vh;
@@ -85,14 +87,14 @@ const Home = ({setMode}) => {
   return (
 
       <PanelWrapper>
-        <StorePanel imgURL={blastoiseURL.default} water className="waterPanel">
-          <div onClick={() => changeStore('agua', 'waterTheme')}>
+        <StorePanel onClick={() => changeStore('agua', 'waterTheme')} imgURL={blastoiseURL.default} className="waterPanel">
+          <div >
             <img src={waterSymbolURL.default} alt="Simbolo do Pokemon tipo Agua"/>
             <h3>Água</h3>
           </div>
         </StorePanel>
-        <StorePanel imgURL={charizardURL.default} className="firePanel">
-          <div onClick={() => changeStore('fogo', 'fireTheme')}>
+        <StorePanel onClick={() => changeStore('fogo', 'fireTheme')} imgURL={charizardURL.default} className="firePanel">
+          <div>
             <img src={fireSymbolURL.default} alt="Simbolo do Pokemon tipo Fogo"/>
             <h3>Fogo</h3>
           </div>

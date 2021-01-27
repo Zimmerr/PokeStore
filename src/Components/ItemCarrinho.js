@@ -24,8 +24,12 @@ const CartItem = styled.div`
 
 const ItemImg = styled.div`
   border-right: 1px solid #EDEDED;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img{
     text-align: center;
+    max-width: 100%;
   }
   grid-area: image;
 `;
@@ -106,6 +110,7 @@ const ItemQuantity = styled.div`
   }
   input[type="number"] {
     position: absolute;
+    outline:none;
     top: 0;
     left: 28px;
     width: 28px;

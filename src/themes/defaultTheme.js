@@ -1,9 +1,9 @@
-import * as pichuURL from '../assets/pichu.png'
+import * as pokemartURL from '../assets/pokemart.png'
 
 const defaultTheme = {
-  navBackground: '#FFCC01',
-  navText: 'black',
-  navImage: pichuURL.default,
+  navBackground: 'rgb(32 32 32)',
+  navText: 'white',
+  navImage: pokemartURL.default,
 };
 
 export default defaultTheme;

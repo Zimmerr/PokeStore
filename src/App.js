@@ -37,12 +37,37 @@ const NavStyled = styled.ul`
     font-size: 0.9em;
     background: none;
     border: 0;
+    
     cursor: pointer;
-    @media (max-width: 700px) {
+    @media (max-width: 1000px) {
       font-size: 15px;
       padding: 0 10px;
     }
   }
+
+  li:not(:first-child){
+    a:after {
+      height: 4px;
+      background: ${props => props.theme.navText};
+      content: '';
+      width: 0;
+      position: absolute;
+      transform: translateX(-50%);
+      transition: width 0.4s;
+      transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
+      left: 50%;
+      bottom: 0px;
+      //margin-top: 3rem;
+    }
+    a:hover{
+      outline: none;
+      :after {
+        width: 100%;
+      }
+      
+    }
+  }
+  
 
   li:nth-of-type(1){
     font-weight: 900;
@@ -54,6 +79,11 @@ const NavStyled = styled.ul`
       padding: 0;
       margin: 15px;
     }
+    @media (max-width: 1000px) {
+      p{
+        margin: 5px;
+      }
+    }
   }
 
   @media (max-width: 1000px) {
@@ -61,6 +91,7 @@ const NavStyled = styled.ul`
     width: 100%;
     justify-content: center;
     font-size: 2rem;
+    
   }
 `;
 
