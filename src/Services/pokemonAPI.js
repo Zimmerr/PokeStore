@@ -1,25 +1,24 @@
+import axios from 'axios';
+
 const urlBase = 'https://pokeapi.co/api/v2';
 
-const consomeApi = (parametro = '', method = 'GET', body) => {
-    
-    return fetch(`${urlBase}/${parametro}`, {
-        method,
+const getApi = (parametro = '') => {
+    return axios.get(`${urlBase}/${parametro}`, {
         headers: {'content-type': 'application/json'},
-        body,
     })
       .then(res => ApiService.TrataErros(res))
-      .then(res => res.json());
+      .then(res => res.data);
 }
 
 const ApiService = {
   searchByType: (type) => {
     let paramType = 'type/' + type;
-    return consomeApi(paramType)
+    return getApi(paramType)
   },
 
   searchPokemonByID: (id) => {
     let paramType = 'pokemon/' + id;
-    return consomeApi(paramType)
+    return getApi(paramType)
   },
 
   searchPokemonList: (array) => {
@@ -35,22 +34,11 @@ const ApiService = {
         })
       })
     })
-
-    console.log(pokeList)
-
-    //return pokeList;
   },
 
 
-  // ListaAutores: () => consomeApi(),
-
-  // CriaAutor: autor => consomeApi('', 'POST', autor),
-
-  // ListaNomes: () => consomeApi('nome'),
-  // ListaLivros: () => consomeApi(),
-  // RemoveAutor: id => consomeApi(id, 'DELETE'),
   TrataErros: res =>{
-    if(!res.ok){
+    if(!res.status === 200){
         throw Error(res.responseText);
     }
     return res;

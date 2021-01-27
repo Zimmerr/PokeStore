@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Pokemon from './Pokemon';
+import ErrorPage from './ErrorPage'
 import PropTypes from 'prop-types'
 import ApiService from '../Services/pokemonAPI'
 import capitalizeFirstLetter from '../utils/capitalizeFirstLetter'
@@ -14,7 +15,8 @@ const PokeContainer = styled.div`
   grid-column: 1 / 2;
   flex-wrap: wrap;
   flex: 1 1 0px;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: center;
   padding: 2%;
   max-height: 93vh;
   overflow: auto;
@@ -134,12 +136,13 @@ class PokemonLista extends Component {
     urlList: [],
     pokemonList: [],
     searchInput: '',
+    error: false,
     //searchMode: false,
   };
 
   componentDidMount(){
     console.log(this.isLoading)
-    if(this.isLoading.current) this.isLoading.current.style.display = "block";
+    this.loadingOn();
     ApiService.searchByType(this.props.pokemonType)
         .then(res => {
           this.setState({urlList: [...this.state.urlList, ...res.pokemon]})
@@ -148,7 +151,23 @@ class PokemonLista extends Component {
         .then(res => {
           this.updatePokemonList(res, paginationValue);
         })
-        .catch(err => console.log('Falha na comunicação com a API ao listar os Pokemons' + err));
+        .catch(err => {
+          this.handleError(err);
+        });
+  }
+
+  loadingOff(){
+    if(this.isLoading.current) this.isLoading.current.style.display = "none";
+  }
+
+  loadingOn(){
+    if(this.isLoading.current) this.isLoading.current.style.display = "block";
+  }
+
+  handleError(err){
+    this.loadingOff();
+    console.log('Falha na comunicação com a API ao listar os Pokemons' + err)
+    this.setState({error: true})
   }
 
   updatePokemonList(nameList, limit, offset = 0, newList){
@@ -163,7 +182,7 @@ class PokemonLista extends Component {
       console.log(nameList)
     }
     else limit = nameList.length
-    if(this.isLoading.current) this.isLoading.current.style.display = "block";
+    this.loadingOn();
     nameList.forEach(o => {
       var id = o.pokemon.url.split('/')[6]
       ApiService.searchPokemonByID(id).then(data => {
@@ -175,12 +194,15 @@ class PokemonLista extends Component {
         })
 
         if(pokeList.length === limit){
-          if(this.isLoading.current) this.isLoading.current.style.display = "none";
+          this.loadingOff();
           if(newList)
             this.setState({pokemonList: pokeList})
           else
             this.setState({pokemonList: [...this.state.pokemonList, ...pokeList]})
         } 
+      })
+      .catch(err =>{
+        this.handleError(err);
       })
     })
     console.log(this.state.pokemonList)
@@ -204,9 +226,9 @@ class PokemonLista extends Component {
 
 
   render(){
-    const {urlList, pokemonList, searchMode} = this.state;
+    const {urlList, pokemonList, searchMode, error} = this.state;
     const {addNewItem} = this.props;
-    if(urlList.length)
+    if(!error)
       return (
         <>
           
@@ -243,7 +265,7 @@ class PokemonLista extends Component {
           </LoadingSpinner>
         </>
       )
-    else return null;
+    else return <ErrorPage/>
   }
 }
 

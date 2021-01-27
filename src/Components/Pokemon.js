@@ -10,7 +10,7 @@ const PokeCard = styled.div `
   margin: 1%;
   border: 1px solid #EDEDED;
   line-height: 1;
-  flex-basis: 14%;
+  flex-basis: 14.5%;
   -webkit-box-shadow: 0px 0px 5px 0px #EDEDED; 
   box-shadow: 0px 0px 5px 0px #EDEDED;
   //max-height: 249px;
