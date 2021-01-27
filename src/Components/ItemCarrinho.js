@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import formatMoney from '../utils/formatMoney'
 
 const CartItem = styled.div`
   display: grid;
@@ -11,6 +12,7 @@ const CartItem = styled.div`
     'image info quantity delete';
   grid-template-rows: repeat(1, 100%);
   width: 100%;
+  height: 150px;
   border-bottom: 2px solid #EDEDED;
 
   @media(max-width: 1000px){
@@ -40,16 +42,17 @@ const ItemInfo = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  line-height: 1;
   
 
   .name{
     font-size: 1.9rem;
-    margin: 0; 
+    margin: auto 0;
   }
 
   .price{
     font-size: 1.4rem;
-    margin: 0; 
+    margin: auto 0; 
   }
 
   @media(max-width: 1000px){
@@ -152,7 +155,7 @@ const ItemCarrinho = ({pokemon, removeItem, editQuantity}) => {
       </ItemImg>
       <ItemInfo>
         <p className="name">{pokemon.name}</p>
-        <p className="price">R$ {pokemon.price.toFixed(2)}</p>
+        <p className="price">R$ {formatMoney(pokemon.price)}</p>
       </ItemInfo>
       <ItemQuantity>
         <button onClick={() => editQuantity(pokemon, pokemon.quantidade-1)} disabled={pokemon.quantidade === 1}><FontAwesomeIcon icon={faMinus} size="xs"/></button>

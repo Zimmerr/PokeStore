@@ -11,7 +11,6 @@ import LojaFogo from './Components/LojaFogo'
 import LojaAgua from './Components/LojaAgua'
 import {ThemeProvider } from 'styled-components';
 import usePokeTheme from './Components/usePokeTheme'
-//import './App.css';
 
 const NavStyled = styled.ul`
   background-color: ${props => props.theme.navBackground};
@@ -33,7 +32,6 @@ const NavStyled = styled.ul`
     display: flex;
     align-items: center;
     position: relative;
-    //font-weight: 300;
     font-size: 1em;
     background: none;
     border: 0;
@@ -41,8 +39,10 @@ const NavStyled = styled.ul`
     
     cursor: pointer;
     @media (max-width: 1000px) {
-      font-size: 15px;
       padding: 0 10px;
+    }
+    @media (max-height: 900px){
+      font-size: 0.8em;
     }
   }
 
@@ -93,9 +93,7 @@ const NavStyled = styled.ul`
   @media (max-width: 1000px) {
     border-top: 1px solid ${props => props.theme.lightgrey};
     width: 100%;
-    justify-content: center;
-    font-size: 2rem;
-    
+    justify-content: center;    
   }
 `;
 

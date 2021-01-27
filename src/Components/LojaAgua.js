@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Loja from './Loja'
 import {ThemeProvider } from 'styled-components';
 import usePokeTheme from './usePokeTheme'

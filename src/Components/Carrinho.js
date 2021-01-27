@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import ItemCarrinho from './ItemCarrinho'
-import formatNumber from '../utils/formatNumber'
+import formatMoney from '../utils/formatMoney'
 import Modal from './Modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
@@ -59,7 +59,7 @@ const FloatingButton = styled.a`
   
   p{
     font-size: 20px;
-    margin: 10px;
+    margin-top: 10px;
   }
   @media (min-width: 1000px){
     display: none;
@@ -77,6 +77,9 @@ const CartTitle = styled.div`
   p{
     display: inline;
     margin-left: 1vh;
+  }
+  @media(max-height: 900px){
+    font-size: 1.6em;
   }
   @media(max-width: 1000px){
     font-size: 1.4em;
@@ -166,8 +169,6 @@ const Carrinho = ({carrinho, clearCart, removeItem, editQuantity}) => {
   const refModal = useRef(null);
   const refFloatButton = useRef(null);
 
-  const [teste, setTeste] = useState(0);
-
   let toggleCart = () => {
     refCart.current.style.width = refCart.current.style.width === "80%" ? "0px" : "80%";
     refCollapse.current.style.width = refCollapse.current.style.width === "100%" ? "0px" : "100%";
@@ -204,7 +205,7 @@ const Carrinho = ({carrinho, clearCart, removeItem, editQuantity}) => {
         </CartContent>
         <CartSummary>
           <p className="totalLabel">Total: </p>
-          <p className="totalNumber">R$ {formatNumber(carrinho.reduce((prev, current)=> prev + current.price * current.quantidade, 0)).toFixed(2)} </p>
+          <p className="totalNumber">R$ {formatMoney(carrinho.reduce((prev, current)=> prev + current.price * current.quantidade, 0))} </p>
         </CartSummary>
         <CartFinish>
           <OutlineButton onClick={() => finishOrder()}>
@@ -214,7 +215,7 @@ const Carrinho = ({carrinho, clearCart, removeItem, editQuantity}) => {
         </CartFinish>
       </Cart>
       <FloatingButton ref={refFloatButton} onClick={() => {toggleCart()}}>
-        <p>{carrinho.length}</p>
+      <p><FontAwesomeIcon icon={faShoppingCart} /> {carrinho.length}</p>
       </FloatingButton>
       <Modal ref={refModal} handleClose={toggleModal}>
         <ModalContent>

@@ -16,14 +16,10 @@ const PokeContainer = styled.div`
   flex-wrap: wrap;
   flex: 1 1 0px;
   justify-content: flex-start;
-  align-items: center;
+  align-items: start;
   padding: 2%;
   max-height: 93vh;
   overflow: auto;
-  
-  @media(max-width: 1000px){
-    justify-content: space-around;
-  }
 `;
 
 const ButtonContainer = styled.div`
@@ -221,6 +217,12 @@ class PokemonLista extends Component {
     })
   }
 
+  handleKeyUp(e){
+    if(e.key === 'Enter'){
+      this.searchPokemon()
+    }
+  }
+
 
   render(){
     const {urlList, pokemonList, searchMode, error} = this.state;
@@ -232,7 +234,7 @@ class PokemonLista extends Component {
           <PokeContainer>
             <SearchInput>
               
-              <input value={this.state.searchInput} type="text" placeholder=" " onChange={(e) => this.onChangeHandler(e)}/>
+              <input onKeyUp={(e) => this.handleKeyUp(e)} value={this.state.searchInput} type="text" placeholder=" " onChange={(e) => this.onChangeHandler(e)}/>
               <label>Busque aqui um pokemon!</label>
               <button onClick={() => this.searchPokemon()} type="submit">
               <FontAwesomeIcon icon={faSearch}/>
