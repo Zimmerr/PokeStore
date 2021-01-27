@@ -70,7 +70,6 @@ const CartTitle = styled.div`
   background: white;
   color: ${props => props.theme.buttonColor};
   font-size: 2em;
-  font-weight: 600;
   height: 100%;
   text-align: center;
   border-bottom: 2px solid #EDEDED;
@@ -93,16 +92,16 @@ const CartContent = styled.div`
 
 const CartSummary = styled.div`
   margin: auto 5px auto 5px;
-  font-size: 1.2em;
+  font-size: 1.3em;
   .totalLabel{
     margin: auto;
-    float:left;
-    font-weight: 600;
+    float: left;
+    text-transform: uppercase
   }
   .totalNumber{
     float:right;
     margin: auto;
-    font-weight: 400;
+    letter-spacing: 1px;
   }
 `;
 
@@ -132,8 +131,8 @@ const ModalContent = styled.div`
   .title {
     grid-area: header; 
     text-align: center;
-    font-weight: 900;
-    font-size: 2rem;
+    font-weight: 400;
+    font-size: 3rem;
   }
 
   img {
@@ -146,7 +145,7 @@ const ModalContent = styled.div`
   }
   .content {
     grid-area: main; 
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   @media(max-width: 1000px){

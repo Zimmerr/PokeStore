@@ -11,6 +11,7 @@ import * as charizardURL from '../assets/charizard.png'
 const PanelWrapper = styled.div`
   height: 93vh;
   width: 100%;
+  text-transform: uppercase;
   :hover > div:not(:hover) {
     filter: brightness(0.5);
     transition: all .3s ease-in;

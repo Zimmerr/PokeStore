@@ -43,13 +43,12 @@ const ItemInfo = styled.div`
   
 
   .name{
-    font-size: 1.7rem;
-    font-weight: 600;
+    font-size: 1.9rem;
     margin: 0; 
   }
 
   .price{
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin: 0; 
   }
 
@@ -115,7 +114,8 @@ const ItemQuantity = styled.div`
     margin: 0;
     padding: 0 0;
     border: 0;
-    font-weight: bold;
+    font-family: inherit;
+    font-weight: 400;
     text-align: center;
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {

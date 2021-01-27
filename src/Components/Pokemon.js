@@ -27,11 +27,15 @@ const PokeInfo = styled.div `
   margin-top: auto;
   text-align: center;
   padding: 0;
+  
   h5{
-    font-size: 0.95em;
+    font-size: 1.9rem;
+    font-weight: inherit;
+    letter-spacing: 1px;
   }
   h6{
-    font-size: 0.75em;
+    font-size: 1.4rem;
+    font-weight: inherit;
   }
   button{
     width: 100%;

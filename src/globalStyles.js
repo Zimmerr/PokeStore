@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+
  
 const GlobalStyle = createGlobalStyle`
   html{
@@ -16,7 +17,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
-    font-family: Arial, Helvetica, Sans-Serif;
+    font-family: 'Londrina Solid', cursive;
+    font-weight: 300;
+    letter-spacing: 2px;
   }
   a {
     text-decoration: none;

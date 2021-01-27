@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 const OutlineButton = styled.button `
+  font-family: inherit;
+  font-weight: inherit;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   padding: 1rem;
   font-size: 1.3em;
   border: none;
@@ -10,6 +14,7 @@ const OutlineButton = styled.button `
   cursor: pointer;
   margin:0;
   outline:none;
+  
 
   &:hover {
     color: white;

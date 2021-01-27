@@ -42,7 +42,6 @@ const LoadingSpinner = styled.div`
   position: fixed;
   display: none;
   font-size: 48px;
-  font-weight : 600;
   color: white;
   z-index: 99;
   background: rgba(0, 0, 0, 0.7); 
@@ -80,6 +79,9 @@ const SearchInput = styled.div`
     border-radius:0;
     background: transparent;
     font-size: 16px;
+    font-family: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
   }
 
   input:focus{
@@ -95,7 +97,6 @@ const SearchInput = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    font-weight: 600;
     margin-top: 16px;
     transition: all .3s ease-out;
   }
@@ -111,7 +112,10 @@ const SearchInput = styled.div`
   button{
     border: none;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: inherit;
+    :hover{
+      filter: brightness(0.9)
+    }
   }
 
   @media(max-width: 1000px){

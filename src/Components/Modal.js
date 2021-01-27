@@ -39,6 +39,11 @@ const ModalContent = styled.section`
     font-size: 16px;
     color: white;
     box-shadow: 2px 2px 3px #999;
+
+    :hover{
+      filter: brightness(0.8);
+      cursor: pointer;
+    }
   }
 `;
 

@@ -33,10 +33,11 @@ const NavStyled = styled.ul`
     display: flex;
     align-items: center;
     position: relative;
-    font-weight: 600;
-    font-size: 0.9em;
+    //font-weight: 300;
+    font-size: 1em;
     background: none;
     border: 0;
+    text-transform: uppercase;
     
     cursor: pointer;
     @media (max-width: 1000px) {
@@ -70,14 +71,17 @@ const NavStyled = styled.ul`
   
 
   li:nth-of-type(1){
-    font-weight: 900;
+    
     font-size: 1.2em;
     float:left;
+    text-transform: uppercase;
+
     p{
       border-top: 0.2em solid ${props => props.theme.navText};
       border-bottom: 0.2em solid ${props => props.theme.navText};
       padding: 0;
       margin: 15px;
+      font-weight: 400;
     }
     @media (max-width: 1000px) {
       p{
