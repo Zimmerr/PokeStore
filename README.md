@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## How to Run
 
 ```
-git clone https://github.com/rafaelfigueiredo-l/b2w-test-pokemon
+git clone https://github.com/Zimmerr/PokeStore
 cd PokeStore
 npm install
 npm start
