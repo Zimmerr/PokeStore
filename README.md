@@ -1,6 +1,6 @@
 # Description
 
-PokeStore is a React Application that uses data from pokeapi.co to simulate a pokemon e-commerce.
+PokeStore is a React Application that uses data from  https://pokeapi.co to simulate a pokemon e-commerce.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
